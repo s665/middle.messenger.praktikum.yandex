@@ -1,0 +1,15 @@
+:root {
+    --primary-blue: #32B5FF;
+    --secondary-blue: #2180B6;
+    --gray: #6A6A6A;
+    --gray-light: #AFAFAF;
+    --gray-lightest: #E1E1E1;
+    --gray-oppacity: rgba(50, 50, 50, 0.28);
+    --white: #F9F9F9;
+    --white-deep: #F3F3F3;
+    --white-blue: #F3F3F3;
+    --red: #E64A4A;
+    --purple: #B165EC;
+    --primary-text: #323232;
+    --secondary-text: #828282;
+}
