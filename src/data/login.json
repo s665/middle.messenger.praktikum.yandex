@@ -1,0 +1,14 @@
+{
+  "inputs": [
+    {
+      "type": "text",
+      "name": "username",
+      "label": "Логин"
+    },
+    {
+      "type": "password",
+      "name": "password",
+      "label": "Пароль"
+    }
+  ]
+}

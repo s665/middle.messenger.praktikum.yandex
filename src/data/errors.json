@@ -1,0 +1,14 @@
+{
+  "notFound": {
+    "title": "404",
+    "description": "Не туда попали",
+    "link_href": "index.hbs",
+    "link_name": "Назад к чатам"
+  },
+  "serverError": {
+    "title": "500",
+    "description": "Мы уже фиксим",
+    "link_href": "index.hbs",
+    "link_name": "Назад к чатам"
+  }
+}

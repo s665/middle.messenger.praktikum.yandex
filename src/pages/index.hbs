@@ -1,6 +1,37 @@
+---
+css:
+- main.css
+- header.css
+- chat-item.css
+---
 {{!< main}}
-<main>
-    <div class="welcome">
-        <h1 class="welcome__title">welcome</h1>
+<div class="layout">
+    <div class="side">
+        <header>
+            <div class="header">
+                <a href="profile.hbs">
+                    <div class="burger">
+                        <div class="burger__line"></div>
+                    </div>
+                </a>
+                <div class="header__search">
+                    <input type="text" name="search" aria-label="search">
+                    <label for="search">
+                        <img src="../../static/icons/loop.svg" alt="search">
+                    </label>
+                </div>
+            </div>
+        </header>
+        <div class="list-wrap">
+            {{#with chats.list}}
+                {{#each this}}
+                    {{> chatItem}}
+                {{/each}}
+            {{/with}}
+        </div>
     </div>
-</main>
+    <div class="content">
+        <main></main>
+    </div>
+</div>
+

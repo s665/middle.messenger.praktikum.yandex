@@ -1,0 +1,67 @@
+.header {
+    background-color: var(--white);
+    height: 54px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    box-sizing: border-box;
+
+    &__search {
+        width: 100%;
+        margin-left: 12px;
+        position: relative;
+
+        input {
+            padding-left: 37px;
+
+            &:focus + label {
+                fill: red;
+            }
+        }
+
+        label {
+            position: absolute;
+            top: 11px;
+            left: 13px;
+        }
+    }
+}
+
+.burger {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover > &__line {
+        background-color: var(--primary-blue);
+    }
+
+    &__line {
+        height: 2px;
+        width: 100%;
+        position: relative;
+        background-color: var(--gray-light);
+        overflow: visible;
+
+        &:before, &:after {
+            content: "";
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: inherit;
+            position: absolute;
+        }
+
+        &:before {
+            top: -12px;
+        }
+
+        &:after {
+            bottom: -12px;
+        }
+    }
+}
+
