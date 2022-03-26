@@ -25,7 +25,7 @@
             justify-content: space-between;
         }
 
-        &__lastMessage {
+        &__last-message {
             color: var(--secondary-text);
             margin-top: 4px;
         }

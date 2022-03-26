@@ -6,7 +6,7 @@
     cursor: pointer;
     font-size: 16px;
     line-height: 16px;
-    background: #F2F2F2;
+    background: var(--whitest);
     width: 100%;
 
     &:hover {
