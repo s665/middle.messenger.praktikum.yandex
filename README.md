@@ -1,6 +1,7 @@
 # Web chat
 
-###  Запуск и настройка
+### Запуск и настройка
+
 Установите зависимости приложения через \
 `npm install`
 
@@ -10,6 +11,6 @@
 Зауск проекта \
 `npm run start`
 
-###  Ссылки
-Макеты в figma: https://www.figma.com/file/8FVvY4Sb1nob0cM25ST3yp/web-chat?node-id=14%3A648
-Ссылка на тестовое окружение: https://6238b2c440b156009dd0e6d4--admiring-bell-2c4f3e.netlify.app/
+### Ссылки
+
+Макеты в figma: https://www.figma.com/file/8FVvY4Sb1nob0cM25ST3yp/web-chat?node-id=14%3A648 Ссылка на тестовое окружение: https://6238b2c440b156009dd0e6d4--admiring-bell-2c4f3e.netlify.app/

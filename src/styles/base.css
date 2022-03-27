@@ -1,90 +1,91 @@
-@import "normalize.css";
-@import "colors.css";
-@import "buttons.css";
+@import 'normalize.css';
+@import 'colors.css';
+@import 'buttons.css';
 
 :root {
-    --radius: 4px
+  --radius: 4px;
 }
 
 * {
-    font-size: 16px;
-    line-height: 16px;
-    font-family: Roboto, sans-serif;
-    flood-color: var(--primary-text);
+  font-size: 16px;
+  line-height: 16px;
+  font-family: Roboto, sans-serif;
+  flood-color: var(--primary-text);
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background: var(--whitest);
-    min-width: 100%;
-    min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--whitest);
+  min-width: 100%;
+  min-height: 100%;
 }
 
 p {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 a {
-    color: var(--secondary-blue);
-    text-decoration: none;
+  color: var(--secondary-blue);
+  text-decoration: none;
 
-    &.red {
-        color: var(--red);
-    }
+  &.red {
+    color: var(--red);
+  }
 }
 
 .block-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .paper {
-    background: var(--white);
-    box-shadow: 4px 5px 10px #DCDCDC;
-    border-radius: 4px;
-    padding: 20px 16px;
-    width: 312px;
+  background: var(--white);
+  box-shadow: 4px 5px 10px #dcdcdc;
+  border-radius: 4px;
+  padding: 20px 16px;
+  width: 312px;
 
-    h1, h2, h3 {
-        text-align: center;
-        font-size: 24px;
-        line-height: 24px;
-    }
+  h1,
+  h2,
+  h3 {
+    text-align: center;
+    font-size: 24px;
+    line-height: 24px;
+  }
 }
 
 input {
-    background: var(--white);
-    box-sizing: border-box;
-    width: 100%;
-    border-radius: 4px;
-    outline: none;
-    border: 1px solid var(--gray-light);
-    padding: 8px 12px;
+  background: var(--white);
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid var(--gray-light);
+  padding: 8px 12px;
 
-    &:focus {
-        border-color: var(--gray);
-        color: var(--primary-text);
-    }
+  &:focus {
+    border-color: var(--gray);
+    color: var(--primary-text);
+  }
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 
-    &.full-size {
-        position: fixed;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-color: var(--white-blue);
-        border: none;
-        border-right: 1px solid var(--gray-lightest);
-        max-width: 54px;
-        display: flex;
-        padding: 13px;
-        align-items: center;
-    }
+  &.full-size {
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--white-blue);
+    border: none;
+    border-right: 1px solid var(--gray-lightest);
+    max-width: 54px;
+    display: flex;
+    padding: 13px;
+    align-items: center;
+  }
 }
-
