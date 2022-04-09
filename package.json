@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "yandex praktikum",
   "scripts": {
-    "dev": "parcel ./src/pages/index.hbs --no-cache",
-    "build": "parcel build ./src/pages/index.hbs",
+    "dev": "parcel src/index.html --no-cache",
+    "build": "parcel build src/index.html --no-cache",
     "server": "node server.js",
     "start": "npm run build && npm run server",
     "lint:prettier": "npx prettier --write src",

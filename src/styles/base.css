@@ -1,6 +1,4 @@
-@import 'normalize.css';
 @import 'colors.css';
-@import 'buttons.css';
 
 :root {
   --radius: 4px;

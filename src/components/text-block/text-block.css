@@ -1,0 +1,15 @@
+.text-block {
+  margin-top: 4px;
+
+  .error {
+    color: var(--red);
+  }
+
+  .primary {
+    color: #32b5ff;
+  }
+
+  .mini {
+    font-size: 14px;
+  }
+}

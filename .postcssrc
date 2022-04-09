@@ -1,4 +1,5 @@
 {
+    "module": true,
     "plugins": {
         "postcss-normalize": true,
         "autoprefixer": true,

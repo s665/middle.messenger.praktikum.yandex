@@ -1,8 +1,12 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-prettier", "postcss-lit"],
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-prettier",
+    "postcss-lit"
+  ],
   "rules": {
     "color-function-notation": "legacy",
-    "alpha-value-notation": "number"
-  },
-
+    "alpha-value-notation": "number",
+    "selector-class-pattern": null
+  }
 }

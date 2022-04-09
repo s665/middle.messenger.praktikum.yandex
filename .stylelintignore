@@ -1,4 +1,5 @@
 node_modules
 dist
 **/*.hbs
+**/*.html
 **/*.{js, ts}

@@ -1,0 +1,22 @@
+.chat-hide {
+  position: absolute;
+  top: 54px;
+  left: 0;
+  width: 340px;
+  height: 100%;
+  background-color: var(--white);
+
+  .menu {
+    list-style: none;
+    padding: 0;
+  }
+
+  .menu-item {
+    padding: 15px;
+    display: block;
+
+    &:hover {
+      background-color: var(--white-blue);
+    }
+  }
+}

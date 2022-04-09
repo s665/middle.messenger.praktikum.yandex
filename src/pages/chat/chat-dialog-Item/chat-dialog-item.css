@@ -1,0 +1,21 @@
+.chat-dialog-item {
+  padding: 10px;
+  display: flex;
+
+  &.me, &.you {
+    max-width: 400px;
+    border-radius: 4px;
+    padding: 15px;
+    line-height: 20px;
+  }
+
+  &.me {
+    margin-left: auto;
+    background: var(--green-ligth);
+  }
+
+  &.you {
+    margin-right: auto;
+    background: var(--gray-lightest);
+  }
+}
