@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/s665/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
+    "@parcel/transformer-js": "^2.3.2",
     "@types/node": "17.0.23",
     "@typescript-eslint/eslint-plugin": "5.16.0",
     "@typescript-eslint/parser": "5.16.0",

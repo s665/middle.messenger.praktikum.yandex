@@ -1,6 +1,6 @@
 import { Component } from '../../core'
 import './form-group.css'
-import validate, { rulesCollection } from '../../utils'
+import { rulesCollection, validate } from '../../utils'
 
 export default class Login extends Component {
   protected getStateFromProps() {

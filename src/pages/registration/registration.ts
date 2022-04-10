@@ -1,5 +1,5 @@
 import { Component } from '../../core'
-import validate, { rulesCollection } from '../../utils'
+import { rulesCollection, validate } from '../../utils'
 
 export default class Registration extends Component {
   protected getStateFromProps() {
