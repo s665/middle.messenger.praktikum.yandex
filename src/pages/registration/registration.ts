@@ -23,8 +23,8 @@ export default class Registration extends Component {
         confirmPassword: '',
       },
       onValidate: (e: Event) => this.validateField(e),
-      goToHome: () => {
-        location.pathname = 'index.html'
+      goToChat: () => {
+        location.pathname = 'chat.html'
       },
       onSubmit: () => {
         const loginData = {
@@ -50,14 +50,12 @@ export default class Registration extends Component {
           values: { ...loginData },
         }
 
-        Object.entries(loginData).forEach(([key, value]) => {
+        Object.entries(loginData as { [key: string]: string }).forEach(([key, value]) => {
           if (key === 'firstName' || key === 'secondName' || key === 'confirmPassword') {
             if (key === 'confirmPassword') {
-              // @ts-ignore
               nextState.errors[key] =
                 loginData.password === loginData.confirmPassword ? '' : 'Пароли не совпадают'
             } else {
-              // @ts-ignore
               nextState.errors[key] = validate(value, rulesCollection.name)
             }
             return
@@ -67,7 +65,7 @@ export default class Registration extends Component {
         })
 
         this.setState(nextState)
-        // console.log('action/login', this.state.values)
+        console.log('action/registration', this.state.values)
       },
     }
   }
@@ -115,7 +113,7 @@ export default class Registration extends Component {
                 {{{Button label="Зарегистрироваться" type="primary" onClick=onSubmit}}}
               </div>
               <div class="form-group__item">
-                {{{Button label="Войти" onClick=goToHome}}}
+                {{{Button label="Войти" onClick=goToChat}}}
               </div>
             </div>
           </div>

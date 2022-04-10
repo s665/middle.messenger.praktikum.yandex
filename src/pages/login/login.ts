@@ -3,7 +3,7 @@ import './form-group.css'
 import validate, { rulesCollection } from '../../utils'
 
 export default class Login extends Component {
-  protected getStateFromProps(props: any) {
+  protected getStateFromProps() {
     this.state = {
       values: {
         login: '',

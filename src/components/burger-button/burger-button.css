@@ -5,10 +5,6 @@
   align-items: center;
   cursor: pointer;
 
-  &:hover > &__line {
-    background-color: var(--primary-blue);
-  }
-
   &__line {
     height: 2px;
     width: 100%;
@@ -33,5 +29,9 @@
     &::after {
       bottom: -12px;
     }
+  }
+
+  &:hover > &__line {
+    background-color: var(--primary-blue);
   }
 }
