@@ -133,7 +133,7 @@ export default class Component<P = any> {
     this._addEvents()
   }
 
-  protected getContent(): HTMLElement {
+  getContent(): HTMLElement {
     // Хак, чтобы вызвать CDM только после добавления в DOM
     if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
       setTimeout(() => {

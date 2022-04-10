@@ -1,12 +1,9 @@
-import { registerComponent, renderDOM } from './core'
-import Input from './components/input/input'
-import Button from './components/button'
-import TextBlock from './components/text-block'
+import { renderDOM } from './core'
+import * as components from './components/*/index.ts'
 import Registration from './pages/registration'
+import registerGroupComponent from './core/register-group-component'
 
-registerComponent(Input)
-registerComponent(Button)
-registerComponent(TextBlock)
+registerGroupComponent(components)
 
 document.addEventListener('DOMContentLoaded', () => {
   const registration = new Registration()

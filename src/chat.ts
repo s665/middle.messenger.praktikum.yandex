@@ -1,17 +1,11 @@
-import { registerComponent, renderDOM } from './core'
-import Chat, { ChatDialog, ChatDialogItem, ChatHeader, ChatHide, ChatItem } from './pages/chat'
-import BurgerButton from './components/burger-button'
-import Input from './components/input'
-import Button from './components/button'
+import { renderDOM } from './core'
+import Chat from './pages/chat'
+import * as components from './components/*/index.ts'
+import * as chatComponents from './pages/chat/*/index.ts'
+import registerGroupComponent from './core/register-group-component'
 
-registerComponent(ChatHeader)
-registerComponent(BurgerButton)
-registerComponent(ChatHide)
-registerComponent(Input)
-registerComponent(ChatItem)
-registerComponent(ChatDialog)
-registerComponent(Button)
-registerComponent(ChatDialogItem)
+registerGroupComponent(chatComponents)
+registerGroupComponent(components)
 
 document.addEventListener('DOMContentLoaded', () => {
   const chat = new Chat()

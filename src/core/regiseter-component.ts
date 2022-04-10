@@ -5,9 +5,12 @@ interface ComponentConstructable<Props = any> {
   new (props: Props): Component
 }
 
-export default function registerComponent<Props = any>(Component: ComponentConstructable) {
+export default function registerComponent<Props = any>(
+  componentName: string,
+  Component: ComponentConstructable
+) {
   Handlebars.registerHelper(
-    Component.name,
+    componentName,
     function ({ hash: { ref, ...hash }, data }: HelperOptions) {
       if (!data.root.children) {
         data.root.children = {}
