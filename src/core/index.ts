@@ -1,3 +1,5 @@
 export { default as Component } from './component'
 export { default as registerComponent } from './regiseter-component'
 export { default as renderDOM } from './render-dom'
+export { default as registerGroupComponents } from './register-group-component'
+export { default as HTTPTransport } from './http-transport'

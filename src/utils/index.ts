@@ -1,4 +1,3 @@
-import { rulesCollection } from './validate'
-
-export { default } from './validate'
-export { rulesCollection }
+export { default as validate } from './validate'
+export { default as queryStringify } from './query-stringify'
+export { rulesCollection } from './validate'
