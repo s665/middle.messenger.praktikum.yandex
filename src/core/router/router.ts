@@ -4,7 +4,7 @@ import Route from './route'
 class Router {
   private static __instance: Router
   private routes: Route[] = []
-  private history = window.history
+  history = window.history
   private currentRoute: Route | undefined = undefined
 
   constructor() {
