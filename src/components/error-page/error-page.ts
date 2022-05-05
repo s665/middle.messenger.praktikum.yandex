@@ -1,5 +1,5 @@
 import { Component } from '../../core'
-import './error.css'
+import './error-page.css'
 
 interface IErrorPage {
   title: string
@@ -8,7 +8,7 @@ interface IErrorPage {
   linkName: string
 }
 
-export default class Error extends Component {
+export default class ErrorPage extends Component {
   constructor(props: IErrorPage) {
     super(props)
   }

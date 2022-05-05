@@ -15,24 +15,32 @@ type Options = {
 }
 
 export default class HTTPTransport {
+  baseURL?: string
+
+  constructor(baseURL?: string) {
+    this.baseURL = process.env.API_URL || baseURL
+  }
+
   get = (url: string, options: Options = {}) => {
-    return this.request(url, { ...options, method: Methods.GET }, options.timeout)
+    return this.request(url, { ...options, method: Methods.GET })
   }
 
   post = (url: string, options: Options = {}) => {
-    return this.request(url, { ...options, method: Methods.POST }, options.timeout)
+    return this.request(url, { ...options, method: Methods.POST })
   }
 
   put = (url: string, options: Options = {}) => {
-    return this.request(url, { ...options, method: Methods.PUT }, options.timeout)
+    return this.request(url, { ...options, method: Methods.PUT })
   }
 
   delete = (url: string, options: Options = {}) => {
-    return this.request(url, { ...options, method: Methods.DELETE }, options.timeout)
+    return this.request(url, { ...options, method: Methods.DELETE })
   }
 
-  request = (url: string, options: Options = {}, timeout = 5000) => {
+  request = (path: string, options: Options = {}): Promise<XMLHttpRequest> => {
+    const DEFAULT_TIMEOUT = 5000
     const { headers = {}, method, data } = options
+    const url = this.baseURL + path
 
     return new Promise(function (resolve, reject) {
       if (!method) {
@@ -56,12 +64,19 @@ export default class HTTPTransport {
       xhr.onabort = reject
       xhr.onerror = reject
 
-      xhr.timeout = timeout
+      xhr.timeout = options.timeout || DEFAULT_TIMEOUT
       xhr.ontimeout = reject
+
+      xhr.withCredentials = true
+      xhr.responseType = 'json'
 
       if (isGet || !data) {
         xhr.send()
       } else {
+        if (data instanceof FormData) {
+          xhr.send(data)
+          return
+        }
         const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
         xhr.send(blob)
       }

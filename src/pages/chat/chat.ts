@@ -1,70 +1,105 @@
 import { Component } from '../../core'
 import './chat.css'
-
-// interface IChatItem {
-//   userName: string
-//   date: Date
-//   lastMessage: string
-//   ref: string
-//   onClick: () => void
-//   isActive: boolean
-// }
+import api from '../../services/api/api'
+import store from '../../services/store'
 
 export default class Chat extends Component {
+  init() {
+    this.getChatItems()
+  }
+
   protected render() {
     // language=hbs
     return `
-      <div class="layout">
-        <div class="side">
-          <header>
-            {{{ChatHeader}}}
-          </header>
-          <div class="list-wrap">
-            {{#each chats}}
-              {{{ChatItem ref=ref userName=this.userName lastMessage=this.lastMessage
-                          date=this.date}}}
-            {{/each}}
+      <div>
+        <div class="layout">
+          <div class="side">
+            <header>
+              {{{ChatHeader isShowMenu=isShowMenu onToggleMenu=onToggleMenu
+                            onToggleShowNewChatModal=onToggleShowNewChat}}}
+            </header>
+            <div class="list-wrap">
+              {{#each chats}}
+                {{{ChatItem id=this.id chatName=this.title lastMessage=this.last_message.content
+                            onClick=this.onClick isActive=this.isActive}}}
+              {{/each}}
+            </div>
+          </div>
+          <div class="content">
+            {{{ChatDialog id=currentChat.id userName=currentChat.chatName}}}
           </div>
         </div>
-        <div class="content">
-          {{{ChatDialog userName=dialog.userName messages=dialog.messages}}}
-        </div>
+        {{{ChatNewChatModal isVisible=isShowNewChat onClose=onToggleShowNewChat}}}
       </div>
     `
   }
 
+  protected componentDidMount() {
+    this.getUserInfo()
+  }
+
   protected getStateFromProps() {
     this.state = {
-      chats: [
-        {
-          userName: 'Вася Пупкин',
-          lastMessage: 'Привет',
-          date: new Date('2022-04-12T16:14'),
-        },
-        {
-          userName: 'Иван Васильевич',
-          lastMessage: 'очень длинное длинное сообщение',
-          date: new Date('2022-04-12T16:14'),
-        },
-        {
-          userName: 'Вася Пупкин',
-          lastMessage: 'Привет',
-          date: new Date('2022-04-12T16:14'),
-        },
-      ],
-      dialog: {
-        userName: 'Иван Васильевич',
-        messages: [
-          { type: 'you', message: 'Ты такую машину сделал?' },
-          { type: 'me', message: 'Да, я' },
-          {
-            type: 'you',
-            message:
-              'У меня тоже один такой был — крылья сделал. Я его на бочку с порохом посадил — пущай полетает!',
-          },
-          { type: 'me', message: 'Зачем же так круто?' },
-        ],
+      chats: [],
+      token: '',
+      currentChat: null,
+      isShowNewChat: false,
+      onToggleShowNewChat: () => {
+        this.setState({ isShowNewChat: !this.state.isShowNewChat })
+        this.getChatItems()
+      },
+      isShowMenu: false,
+      onToggleMenu: () => {
+        this.setState({ isShowMenu: !this.state.isShowMenu })
+      },
+      onSelectChat: (id: number, chatName: string) => {
+        this.setState({ currentChat: { id, chatName } })
+        this.setState({
+          // @ts-ignore
+          chats: this.state.chats.map(item => {
+            if (item.id === id) {
+              return {
+                ...item,
+                isActive: true,
+              }
+            }
+            return {
+              ...item,
+              isActive: false,
+            }
+          }),
+        })
       },
     }
+  }
+
+  private getChatItems() {
+    api.chat
+      .getChats()
+      .then(data => {
+        this.setState({
+          currentChat: data.response[0].id,
+          // @ts-ignore
+          chats: data.response.map(item =>
+            Object.assign(item, {
+              onClick: (id: number, chatName: string) => this.state.onSelectChat(id, chatName),
+            })
+          ),
+        })
+      })
+      .catch(err => {
+        throw new Error(err)
+      })
+  }
+
+  private getUserInfo() {
+    api.auth
+      .getUser()
+      .then(data => {
+        store.setUser({ ...data.response })
+      })
+      .catch(err => {
+        throw new Error(err)
+      })
   }
 }

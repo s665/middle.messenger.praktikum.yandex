@@ -9,6 +9,7 @@ interface IInputProps {
   onBlur?: () => void
   className?: string
   placeholder?: string
+  accept?: string
 }
 
 export default class Input extends Component {
@@ -32,7 +33,7 @@ export default class Input extends Component {
     // language=hbs
     return `
       <div class="{{{className}}}">
-        <input type="{{type}}" name="{{name}}" {{#if placeholder}}placeholder="{{placeholder}}"{{/if}} aria-label="{{name}}" value="{{value}}" />
+        <input type="{{type}}" name="{{name}}" {{#if placeholder}}placeholder="{{placeholder}}"{{/if}} aria-label="{{name}}" value="{{value}}" accept="{{accept}}" />
         {{#if label}}
           <label for="login">
             {{label}}

@@ -1,5 +1,7 @@
 import { Component } from '../../core'
 import { rulesCollection, validate } from '../../utils'
+import api from '../../services/api'
+import { router } from '../../core/router'
 
 export default class Registration extends Component {
   protected getStateFromProps() {
@@ -24,7 +26,7 @@ export default class Registration extends Component {
       },
       onValidate: (e: Event) => this.validateField(e),
       goToChat: () => {
-        location.pathname = 'chat.html'
+        location.pathname = '/'
       },
       onSubmit: () => {
         const loginData = {
@@ -65,7 +67,27 @@ export default class Registration extends Component {
         })
 
         this.setState(nextState)
-        console.log('action/registration', this.state.values)
+        if (Object.values(nextState.errors).every(e => !e)) {
+          api.auth
+            .signup({
+              login: this.state.values.login,
+              password: this.state.values.password,
+              phone: this.state.values.phone,
+              email: this.state.values.email,
+              second_name: this.state.values.secondName,
+              first_name: this.state.values.firstName,
+            })
+            .then(data => {
+              if (data.status !== 200) {
+                this.setChildProps(`authError`, { text: data.response.reason })
+                return
+              }
+              router.go('/messenger')
+            })
+            .catch(err => {
+              throw new Error(err)
+            })
+        }
       },
     }
   }

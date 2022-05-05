@@ -1,6 +1,7 @@
 .chat-dialog-item {
   padding: 10px;
   display: flex;
+  margin-top: 15px;
 
   &.me,
   &.you {

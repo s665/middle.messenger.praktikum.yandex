@@ -1,8 +1,29 @@
 import { Component } from '../../core'
 import './form-group.css'
 import { rulesCollection, validate } from '../../utils'
+import api from '../../services/api'
+import { router } from '../../core/router'
+import store from '../../services/store'
 
 export default class Login extends Component {
+  private initUser() {
+    api.auth
+      .getUser()
+      .then(data => {
+        if (data.status === 200) {
+          store.setUser(data.response)
+          router.go('/messenger')
+        }
+      })
+      .catch(err => {
+        throw new Error(err)
+      })
+  }
+
+  init() {
+    this.initUser()
+  }
+
   protected getStateFromProps() {
     this.state = {
       values: {
@@ -13,6 +34,7 @@ export default class Login extends Component {
         login: '',
         password: '',
       },
+      authError: '',
       onValidate: (e: Event) => this.validateField(e),
       onSubmit: () => {
         const loginData = {
@@ -26,6 +48,7 @@ export default class Login extends Component {
             password: '',
           },
           values: { ...loginData },
+          authError: '',
         }
 
         Object.entries(loginData).forEach(([key, value]) => {
@@ -34,16 +57,31 @@ export default class Login extends Component {
         })
 
         this.setState(nextState)
-        console.log('action/login', this.state.values)
+        if (Object.values(nextState.errors).every(e => !e)) {
+          this.setChildProps(`authError`, { text: '' })
+          api.auth
+            .signin({ login: this.state.values.login, password: this.state.values.password })
+            .then(data => {
+              if (data.status !== 200) {
+                this.setChildProps(`authError`, { text: data.response.reason })
+                return
+              }
+              router.go('/messenger')
+            })
+            .catch(err => {
+              throw new Error(err)
+            })
+        }
       },
+
       onRegistration: () => {
-        location.pathname = '/registration.html'
+        location.pathname = '/sign-up'
       },
     }
   }
 
   protected render() {
-    const { errors, values } = this.state
+    const { errors, values, authError } = this.state
     // language=hbs
     return `
       <main>
@@ -58,6 +96,7 @@ export default class Login extends Component {
               {{{Input ref="password" name="password" label="Пароль"
                        value="${values.password}" onFocus=onValidate onBlur=validateField}}}
               {{{TextBlock ref="passwordError" text="${errors.password}" type="error"}}}
+              {{{TextBlock ref="authError" text="${authError}" type="error"}}}
               <div class="form-group__item">
                 {{{Button label="Войти" type="primary" onClick=onSubmit}}}
               </div>

@@ -1,0 +1,12 @@
+.hide-item {
+  padding: 15px;
+  display: flex;
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+
+  &:hover {
+    background-color: var(--white-blue);
+  }
+}
