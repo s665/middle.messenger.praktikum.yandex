@@ -75,7 +75,7 @@ export default class Login extends Component {
       },
 
       onRegistration: () => {
-        location.pathname = '/sign-up'
+        router.go('/sign-up')
       },
     }
   }

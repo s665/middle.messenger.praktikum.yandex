@@ -19,7 +19,7 @@ registerGroupComponent(chatComponents)
 document.addEventListener('DOMContentLoaded', () => {
   router
     .use('/', Login)
-    .use('/signup', Registration)
+    .use('/sign-up', Registration)
     .use('/messenger', Chat)
     .use('/profile', Profile)
     .use('/404', NotFound)
