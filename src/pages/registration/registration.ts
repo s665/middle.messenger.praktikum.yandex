@@ -26,7 +26,7 @@ export default class Registration extends Component {
       },
       onValidate: (e: Event) => this.validateField(e),
       goToChat: () => {
-        location.pathname = '/'
+        router.go('/')
       },
       onSubmit: () => {
         const loginData = {
