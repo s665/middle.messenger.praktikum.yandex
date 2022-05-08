@@ -6,6 +6,7 @@ interface IChatNewChatModal {
   isVisible: boolean
   onSubmit: () => void
   onClose: () => void
+  chatsName?: string[]
 }
 
 export default class ChatNewChatModal extends Component {
@@ -48,6 +49,10 @@ export default class ChatNewChatModal extends Component {
         const error = validate(chatName, ['isNull'])
         if (error) {
           this.setState({ newChatError: error })
+          return
+        }
+        if (props.chatsName?.includes(chatName)) {
+          this.setState({ newChatError: 'Чат с таким названием уже существует' })
           return
         }
         api.chat

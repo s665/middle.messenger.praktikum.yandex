@@ -4,10 +4,10 @@ import UserApi from './user-api'
 import ChatApi from './chat-api'
 
 class Api {
-  http: HTTPTransport
-  auth: AuthApi
-  user: UserApi
-  chat: ChatApi
+  private readonly http: HTTPTransport
+  public auth: AuthApi
+  public user: UserApi
+  public chat: ChatApi
 
   constructor() {
     this.http = new HTTPTransport()

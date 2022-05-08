@@ -1,6 +1,6 @@
 import { Component } from '../../core'
 import './form-group.css'
-import { rulesCollection, validate } from '../../utils'
+import { checkIsEmptyValues, rulesCollection, validate } from '../../utils'
 import api from '../../services/api'
 import { router } from '../../core/router'
 import store from '../../services/store'
@@ -57,7 +57,7 @@ export default class Login extends Component {
         })
 
         this.setState(nextState)
-        if (Object.values(nextState.errors).every(e => !e)) {
+        if (checkIsEmptyValues(nextState.errors)) {
           this.setChildProps(`authError`, { text: '' })
           api.auth
             .signin({ login: this.state.values.login, password: this.state.values.password })

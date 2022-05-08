@@ -1,5 +1,6 @@
 import { Component } from '../../../core'
 import store from '../../../services/store'
+import { checkIsEmptyValues, rulesCollection, validate } from '../../../utils'
 
 export interface IChangeUserData {
   firstName: string
@@ -34,7 +35,16 @@ export default class ProfileChangeData extends Component {
         phone: user?.phone,
         displayName: user?.display_name,
       },
+      errors: {
+        firstName: '',
+        secondName: '',
+        login: '',
+        email: '',
+        phone: '',
+        displayName: '',
+      },
       apiError: '',
+      onValidate: (e: Event) => this.validateField(e),
       onChangeData: () => {
         const userData = {
           firstName: this.getChildByRef('firstName').getString(),
@@ -47,17 +57,35 @@ export default class ProfileChangeData extends Component {
 
         const nextState = {
           values: { ...userData },
+          errors: {
+            firstName: '',
+            secondName: '',
+            login: '',
+            email: '',
+            phone: '',
+            displayName: '',
+          },
         }
 
-        this.props.onSubmit(userData)
+        Object.entries(userData as { [key: string]: string }).forEach(([key, value]) => {
+          if (key === 'firstName' || key === 'secondName' || key === 'displayName') {
+            nextState.errors[key] = validate(value, rulesCollection.name)
+            return
+          }
+          // @ts-ignore
+          nextState.errors[key] = validate(value, rulesCollection[key])
+        })
 
         this.setState(nextState)
+        if (checkIsEmptyValues(nextState.errors)) {
+          this.props.onSubmit(userData)
+        }
       },
     }
   }
 
   protected render() {
-    const { values } = this.state
+    const { values, errors } = this.state
     // language=hbs
     return `
       <div class="change-password-modal">
@@ -70,21 +98,27 @@ export default class ProfileChangeData extends Component {
               <div class="form-group">
                 {{{Input ref="email" name="email" label="Почта"
                          value="${values.email || ''}" onFocus=onValidate onBlur=onValidate}}}
+                {{{TextBlock ref="emailError" text="${errors.email}" type="error"}}}
 
                 {{{Input ref="login" name="login" label="Логин"
                          value="${values.login || ''}" onFocus=onValidate onBlur=onValidate}}}
+                {{{TextBlock ref="loginError" text="${errors.login}" type="error"}}}
 
                 {{{Input ref="firstName" name="firstName" label="Имя"
                          value="${values.firstName || ''}" onFocus=onValidate onBlur=onValidate }}}
+                {{{TextBlock ref="firstNameError" text="${errors.firstName}" type="error"}}}
 
                 {{{Input ref="secondName" name="secondName" label="Фамилия"
                          value="${values.secondName || ''}" onFocus=onValidate onBlur=onValidate}}}
+                {{{TextBlock ref="secondNameError" text="${errors.secondName}" type="error"}}}
 
                 {{{Input ref="displayName" name="displayName" label="Имя в чате"
                          value="${values.displayName || ''}" onFocus=onValidate onBlur=onValidate}}}
+                {{{TextBlock ref="displayNameError" text="${errors.displayName}" type="error"}}}
 
                 {{{Input ref="phone" name="phone" label="Телефон"
                          value="${values.phone || ''}" onFocus=onValidate onBlur=onValidate}}}
+                {{{TextBlock ref="phoneError" text="${errors.phone}" type="error"}}}
 
                 {{{TextBlock ref="apiError" text=message type="error"}}}
 
@@ -100,5 +134,23 @@ export default class ProfileChangeData extends Component {
         {{/if}}
       </div>
     `
+  }
+
+  private validateField(e: Event) {
+    const refName = (e.target as HTMLInputElement).name
+    const value = this.getChildByRef(`${refName}`).getString()
+
+    let errorMessage
+    if (refName === 'firstName' || refName === 'secondName' || refName === 'displayName') {
+      errorMessage = validate(value, rulesCollection.name)
+    } else {
+      errorMessage = validate(value, rulesCollection[refName])
+    }
+
+    if (errorMessage) {
+      this.setChildProps(`${refName}Error`, { text: errorMessage })
+      return
+    }
+    this.setChildProps(`${refName}Error`, { text: '' })
   }
 }

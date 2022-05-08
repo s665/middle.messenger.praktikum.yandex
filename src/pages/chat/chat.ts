@@ -29,7 +29,7 @@ export default class Chat extends Component {
             {{{ChatDialog id=currentChat.id userName=currentChat.chatName}}}
           </div>
         </div>
-        {{{ChatNewChatModal isVisible=isShowNewChat onClose=onToggleShowNewChat}}}
+        {{{ChatNewChatModal isVisible=isShowNewChat onClose=onToggleShowNewChat chatsName=chatsName}}}
       </div>
     `
   }
@@ -41,6 +41,7 @@ export default class Chat extends Component {
   protected getStateFromProps() {
     this.state = {
       chats: [],
+      chatsName: [],
       token: '',
       currentChat: null,
       isShowNewChat: false,
@@ -77,14 +78,17 @@ export default class Chat extends Component {
     api.chat
       .getChats()
       .then(data => {
+        const chatsName: string[] = []
         this.setState({
           currentChat: data.response[0].id,
           // @ts-ignore
-          chats: data.response.map(item =>
-            Object.assign(item, {
+          chats: data.response.map(item => {
+            chatsName.push(item.title)
+            return Object.assign(item, {
               onClick: (id: number, chatName: string) => this.state.onSelectChat(id, chatName),
             })
-          ),
+          }),
+          chatsName,
         })
       })
       .catch(err => {

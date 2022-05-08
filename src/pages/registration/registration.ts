@@ -1,5 +1,5 @@
 import { Component } from '../../core'
-import { rulesCollection, validate } from '../../utils'
+import { checkIsEmptyValues, rulesCollection, validate } from '../../utils'
 import api from '../../services/api'
 import { router } from '../../core/router'
 
@@ -67,7 +67,7 @@ export default class Registration extends Component {
         })
 
         this.setState(nextState)
-        if (Object.values(nextState.errors).every(e => !e)) {
+        if (checkIsEmptyValues(nextState.errors)) {
           api.auth
             .signup({
               login: this.state.values.login,
@@ -83,9 +83,6 @@ export default class Registration extends Component {
                 return
               }
               router.go('/messenger')
-            })
-            .catch(err => {
-              throw new Error(err)
             })
         }
       },

@@ -97,11 +97,13 @@ export default class Profile extends Component {
       onToggleChangePassword: () => {
         this.setState({
           isVisibleChangePasswordModal: !this.state.isVisibleChangePasswordModal,
+          changePasswordMessage: '',
         })
       },
       onToggleChangeData: () => {
         this.setState({
           isVisibleChangeDataModal: !this.state.isVisibleChangeDataModal,
+          changeUserDataMessage: '',
         })
       },
       onChangeUserData: (data: IChangeUserData) => {
@@ -157,16 +159,11 @@ export default class Profile extends Component {
           })
       },
       onLogout: () => {
-        api.auth
-          .logout()
-          .then(data => {
-            if (data.status === 200) {
-              router.go('/')
-            }
-          })
-          .catch(err => {
-            throw new Error(err)
-          })
+        api.auth.logout().then(data => {
+          if (data.status === 200) {
+            router.go('/')
+          }
+        })
       },
     }
   }
