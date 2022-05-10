@@ -1,10 +1,14 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
     "typeRoots": [
       "node_modules/@types",
-      "typings/app.d.ts"
+      "typings/app.d.ts",
+      "typing/img.d.ts"
     ],
     "sourceMap": true,
     "outDir": "./dist",

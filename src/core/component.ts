@@ -17,7 +17,7 @@ export default class Component<P = any> {
   } as const
 
   public id = nanoid(6)
-  private readonly _meta: ComponentMeta
+  private _meta: ComponentMeta
 
   eventBus: () => EventBus<Events>
 

@@ -1,23 +1,29 @@
 import { Component } from '../../../core'
 import './chat-hide.css'
 
+interface IChatHide {
+  menuItems: { label: string; action: () => void }[]
+}
+
 export default class ChatHide extends Component {
+  constructor(props: IChatHide) {
+    super(props)
+  }
+
   render() {
     // language=hbs
     return `
       <nav class="chat-hide">
         <ul class="menu">
-          <li>
-            <a class="menu-item" href="#">Профиль</a>
-          </li>
-          <li>
-            <a class="menu-item" href="#">Создать группу</a>
-          </li>
-          <li>
-            <a class="menu-item" href="#">Сменить пароль</a>
-          </li>
+        {{#each menuItems}}
+          {{{ChatHideItem label=label action=action}}}
+        {{/each}}
         </ul>
       </nav>
     `
+  }
+
+  protected getStateFromProps(props: IChatHide) {
+    this.state = { ...props }
   }
 }

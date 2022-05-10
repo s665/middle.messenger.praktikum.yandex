@@ -2,11 +2,11 @@ import { Component } from '../../../core'
 import './chat-item.css'
 
 interface IChatProps {
-  userName: string
+  id: number
+  chatName: string
   lastMessage: string
-  date: Date
   isActive: boolean
-  onClick?: () => void
+  onClick: () => void
 }
 
 export default class ChatItem extends Component {
@@ -17,7 +17,7 @@ export default class ChatItem extends Component {
   init() {
     this.events = {}
     if (this.props.onClick) {
-      this.events.click = this.props.onClick
+      this.events.click = () => this.props.onClick(this.props.id, this.props.chatName)
     }
   }
 
@@ -29,26 +29,20 @@ export default class ChatItem extends Component {
           <span class="chat-details__useravatar"></span>
           <div class="chat-details__wrap">
             <span>
-              {{userName}}
+              {{chatName}}
             </span>
             <span class="chat-details__last-message">
-              {{userMessage}}
+              {{lastMessage}}
             </span>
           </div>
-        </div>
-        <div class="chat-details__wrap-between">
-          <time class="chat-details__time">
-            {{userDate}}
-          </time>
         </div>
       </div>`
   }
 
   protected getStateFromProps(props: IChatProps) {
     this.state = {
-      userDate: new Date(props.date).toLocaleTimeString(),
       userMessage:
-        props.lastMessage.length > 20 ? `${props.lastMessage.slice(0, 20)}...` : props.lastMessage,
+        props.lastMessage?.length > 20 ? `${props.lastMessage.slice(0, 20)}...` : props.lastMessage,
     }
   }
 }

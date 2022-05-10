@@ -13,7 +13,9 @@
 Зауск проекта \
 `npm run start`
 
+Зауск тестов \
+`npm run test`
+
 ### Ссылки
 
-Ссылка на тестовое окружение: https://deploy--admiring-bell-2c4f3e.netlify.app/
-
+Макеты в figma: https://www.figma.com/file/8FVvY4Sb1nob0cM25ST3yp/web-chat?node-id=14%3A648 Ссылка на тестовое окружение: https://deploy--admiring-bell-2c4f3e.netlify.app/

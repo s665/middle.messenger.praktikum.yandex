@@ -4,11 +4,11 @@
   height: 100%;
   flex-direction: column;
   border-left: 1px solid #e1e1e1;
+  position: relative;
 }
 
 .chat-dialog__header {
   height: 54px;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   background-color: var(--white);
@@ -18,7 +18,7 @@
 
 .chat-dialog__content {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   flex-grow: 1;
   overflow-y: auto;
   padding: 10px;
