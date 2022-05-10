@@ -1,5 +1,7 @@
 # Web chat
 
+### PR https://github.com/s665/middle.messenger.praktikum.yandex/pull/3
+
 ### Запуск и настройка
 
 Установите зависимости приложения через \
