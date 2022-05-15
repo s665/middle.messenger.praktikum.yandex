@@ -14,6 +14,8 @@ import './styles/base.css'
 components.forEach(c => registerComponent(c))
 profileComponents.forEach(c => registerComponent(c))
 dropDown.forEach(c => registerComponent(c))
+
+console.log('test git hook')
 chatComponents.forEach(c => registerComponent(c))
 
 document.addEventListener('DOMContentLoaded', () => {

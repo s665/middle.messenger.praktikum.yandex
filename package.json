@@ -18,8 +18,8 @@
     "url": "git+https://github.com/s665/middle.messenger.praktikum.yandex.git"
   },
   "lint-staged": {
-    "*.(ts|html|css)": ["lint:prettier", "lint:eslint"],
-    "*.css": ["lint:stylelint"]
+    "*.(ts|html)": ["npm run lint:prettier", "npm run lint:eslint"],
+    "*.css": ["npm run lint:stylelint"]
   },
   "keywords": [],
   "author": "Stepan Skaryakin",
