@@ -18,8 +18,13 @@
     "url": "git+https://github.com/s665/middle.messenger.praktikum.yandex.git"
   },
   "lint-staged": {
-    "*.(ts|html)": ["npm run lint:prettier", "npm run lint:eslint"],
-    "*.css": ["npm run lint:stylelint"]
+    "*.(ts|html)": [
+      "npm run lint:prettier",
+      "npm run lint:eslint"
+    ],
+    "*.css": [
+      "npm run lint:stylelint"
+    ]
   },
   "keywords": [],
   "author": "Stepan Skaryakin",
@@ -50,9 +55,9 @@
     "eslint-config-prettier": "8.5.0",
     "global-jsdom": "8.4.0",
     "html-webpack-plugin": "5.5.0",
-    "husky": "^8.0.1",
+    "husky": "8.0.1",
     "jsdom": "19.0.0",
-    "lint-staged": "^12.4.1",
+    "lint-staged": "12.4.1",
     "mini-css-extract-plugin": "2.6.0",
     "mocha": "10.0.0",
     "normalize": "0.3.1",
