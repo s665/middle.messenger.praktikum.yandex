@@ -1,6 +1,25 @@
-export { default } from './chat'
-export { default as ChatDialog } from './chat-dialog'
-export { default as ChatItem } from './chat-item'
-export { default as ChatHide } from './chat-hide'
-export { default as ChatHeader } from './chat-header'
-export { default as ChatDialogItem } from './chat-dialog-Item'
+import Chat from './chat'
+import ChatAddUserModal from './chat-add-user-modal'
+import ChatDeleteUserModal from './chat-delete-user-modal'
+import ChatDialog from './chat-dialog'
+import ChatDialogItem from './chat-dialog-Item'
+import ChatHeader from './chat-header'
+import ChatHide from './chat-hide'
+import ChatHideItem from './chat-hide-item'
+import ChatItem from './chat-item'
+import ChatNewChatModal from './chat-new-chat-modal'
+
+const chatComponents = [
+  ChatAddUserModal,
+  ChatDeleteUserModal,
+  ChatDialog,
+  ChatDialogItem,
+  ChatHeader,
+  ChatHide,
+  ChatHideItem,
+  ChatItem,
+  ChatNewChatModal,
+]
+
+export default Chat
+export { chatComponents }

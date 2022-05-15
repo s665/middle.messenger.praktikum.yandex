@@ -1,16 +1,13 @@
 import Component from './component'
 import Handlebars, { HelperOptions } from 'handlebars'
 
-interface ComponentConstructable<Props = any> {
+export interface ComponentConstructable<Props = any> {
   new (props: Props): Component
 }
 
-export default function registerComponent<Props = any>(
-  componentName: string,
-  Component: ComponentConstructable
-) {
+export default function registerComponent(Component: ComponentConstructable) {
   Handlebars.registerHelper(
-    componentName,
+    Component.name,
     function ({ hash: { ref, ...hash }, data }: HelperOptions) {
       if (!data.root.children) {
         data.root.children = {}

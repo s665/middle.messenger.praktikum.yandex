@@ -1,20 +1,20 @@
-import Chat from './pages/chat'
-import Profile from './pages/profile'
-import * as profileComponents from './pages/profile/*/index.ts'
-import * as components from './components/*/index.ts'
-import * as dropDown from './components/drop-down/*/index.ts'
-import * as chatComponents from './pages/chat/*/index.ts'
-import registerGroupComponent from './core/register-group-component'
+import Chat, { chatComponents } from './pages/chat'
+import Profile, { profileComponents } from './pages/profile'
+import components from './components/'
+import dropDown from './components/drop-down'
 import Login from './pages/login'
 import Registration from './pages/registration'
 import NotFound from './pages/404'
 import InternalServerError from './pages/500'
 import { router } from './core/router'
+import { registerComponent } from './core'
+import './styles/colors.css'
+import './styles/base.css'
 
-registerGroupComponent(profileComponents)
-registerGroupComponent(components)
-registerGroupComponent(dropDown)
-registerGroupComponent(chatComponents)
+components.forEach(c => registerComponent(c))
+profileComponents.forEach(c => registerComponent(c))
+dropDown.forEach(c => registerComponent(c))
+chatComponents.forEach(c => registerComponent(c))
 
 document.addEventListener('DOMContentLoaded', () => {
   router
