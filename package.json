@@ -18,7 +18,7 @@
     "url": "git+https://github.com/s665/middle.messenger.praktikum.yandex.git"
   },
   "lint-staged": {
-    "*.(ts|html)": [
+    "*.(ts|html|json)": [
       "npm run lint:prettier",
       "npm run lint:eslint"
     ],
