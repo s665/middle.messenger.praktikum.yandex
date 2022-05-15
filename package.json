@@ -10,11 +10,16 @@
     "lint:prettier": "npx prettier --write src",
     "lint:eslint": "npx eslint --ext .ts,.js src --color --fix",
     "lint:stylelint": "npx stylelint **/*.{css,pcss,sass}",
-    "test": "npx mocha"
+    "test": "npx mocha",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/s665/middle.messenger.praktikum.yandex.git"
+  },
+  "lint-staged": {
+    "*.(ts|html|css)": ["lint:prettier", "lint:eslint"],
+    "*.css": ["lint:stylelint"]
   },
   "keywords": [],
   "author": "Stepan Skaryakin",
@@ -45,7 +50,9 @@
     "eslint-config-prettier": "8.5.0",
     "global-jsdom": "8.4.0",
     "html-webpack-plugin": "5.5.0",
+    "husky": "^8.0.1",
     "jsdom": "19.0.0",
+    "lint-staged": "^12.4.1",
     "mini-css-extract-plugin": "2.6.0",
     "mocha": "10.0.0",
     "normalize": "0.3.1",
