@@ -2,10 +2,6 @@ import EventBus from './event-bus'
 import * as Handlebars from 'handlebars'
 import { nanoid } from 'nanoid'
 
-interface ComponentMeta<P = any> {
-  props: P
-}
-
 type Events = Values<typeof Component.EVENTS>
 
 export default class Component<P = any> {
@@ -17,7 +13,6 @@ export default class Component<P = any> {
   } as const
 
   public id = nanoid(6)
-  private _meta: ComponentMeta
 
   eventBus: () => EventBus<Events>
 
@@ -30,10 +25,6 @@ export default class Component<P = any> {
 
   public constructor(props?: P) {
     const eventBus = new EventBus<Events>()
-
-    this._meta = {
-      props,
-    }
 
     this.getStateFromProps(props)
 
@@ -74,7 +65,7 @@ export default class Component<P = any> {
     this.componentDidMount(props)
   }
 
-  protected componentDidMount(props: P) {}
+  protected componentDidMount(_props: P) {}
 
   private _componentDidUpdate(oldProps: P, newProps: P) {
     const response = this.componentDidUpdate(oldProps, newProps)
@@ -84,7 +75,7 @@ export default class Component<P = any> {
     this._render()
   }
 
-  protected componentDidUpdate(oldProps: P, newProps: P) {
+  protected componentDidUpdate(_oldProps: P, _newProps: P) {
     return true
   }
 
@@ -223,7 +214,7 @@ export default class Component<P = any> {
     this.getContent().style.display = 'none'
   }
 
-  protected getStateFromProps(props: any): void {
+  protected getStateFromProps(_props: any): void {
     this.state = {}
   }
 
